@@ -4,11 +4,11 @@ import NetworkTable from './NetworkTable'
 import useNetwork from './useNetwork'
 
 function App() {
-  const { network, loss, movies, addMovie, train, steps } = useNetwork()
   const [title, setTitle] = useState('')
   const [year, setYear] = useState('')
   const [minutes, setMinutes] = useState('')
   const [target, setTarget] = useState('')
+  const { network, loss, movies, addMovie, train, steps } = useNetwork()
   function handleSubmit(event) {
     event.preventDefault()
     addMovie(title, year, minutes, target)
@@ -50,7 +50,7 @@ function App() {
       </form>
       <MovieTable movies={movies} />
       <h2>Steps: {steps}</h2>
-      <h2>Loss: {loss}</h2>
+      <h2>Loss: {loss.toFixed(20)}</h2>
       <NetworkTable network={network} />
       <button onClick={train}>Train</button>
     </>

@@ -6,8 +6,8 @@ export default function MovieTable (props) {
         <td>{movie.year}</td>
         <td>{movie.minutes}</td>
         <td>{movie.target}</td>
-        <td>{movie.prediction?.toFixed(5)}</td>
-        <td>{movie.error?.toFixed(5)}</td>
+        <td>{movie.prediction?.toFixed(20)}</td>
+        <td>{movie.error?.toFixed(20)}</td>
       </tr>
     )
   })

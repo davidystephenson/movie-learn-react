@@ -27,6 +27,11 @@ export function getError (prediction, movie) {
   return Math.abs(prediction - movie.target)
 }
 
+export function getLoss (movies) {
+  const predictions = movies.filter(movie => movie.error != null)
+  return predictions.reduce((sum, movie) => sum + movie.error, 0) / movies.length
+}
+
 export function predictMovies (network, movies) {
   const averageYear = movies.reduce((sum, movie) => sum + movie.year, 0) / movies.length
   const averageMinutes = movies.reduce((sum, movie) => sum + movie.minutes, 0) / movies.length
@@ -37,7 +42,7 @@ export function predictMovies (network, movies) {
     const error = getError(prediction, movie)
     return { ...movie, prediction, error }
   })
-  const loss = predictions.reduce((sum, movie) => sum + movie.error, 0) / movies.length
+  const loss = getLoss(predictions)
   return { loss, predictions }
 }
 
